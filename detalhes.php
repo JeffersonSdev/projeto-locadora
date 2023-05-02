@@ -12,23 +12,24 @@
 	?>
 	<div id="corpo">
 		<?php 
-			$cod = $_GET['cod']??0;
+			$cod = $_GET['cod']??0; //puxando o cod passado na URL
 			$query = $banco->query("select * from jogos where cod = '$cod' ");
 		?>
 		<h1>Detalhes do Jogo</h1>
 		<table class="detalhes">
 			<?php 
 				if(!$query){
-					echo "Não encontrado!";
+					echo "Não encontrado!"; // caso não exista 
 				}else{
 					if($query->num_rows == 1){
 						$reg = $query->fetch_object();
+						$t  = thumb($reg->capa);
 						echo "<tr>";
-						echo	"<td rowspan='3'><img src=''</td>";
-						echo	"<td><h2>$reg->nome</h2></td>";
+						echo	"<td rowspan='3'><img src='$t' class='full' /></td>";
+						echo	"<td><h2>$reg->nome</h2>Nota: ".number_format($reg->nota,1)."/10.0</td>";
 						echo "</tr>";
 						echo "<tr>";
-						echo	"<td>Descrição</td>";
+						echo	"<td>$reg->descricao</td>";
 						echo "</tr>";
 						echo "<tr>";
 						echo	"<td>Adm</td>";
@@ -38,6 +39,7 @@
 			
 			?>
 		</table>
+		<a href="index.php"><img src="icons/icoback.png" alt="Voltar"></a>
 	</div> 
 </body>
 

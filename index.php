@@ -24,7 +24,7 @@
 					}else{ 
 						while($reg = $busca->fetch_object()){ //enquanto tiver registros em $busca rodara
 							$t = thumb($reg->capa);
-							echo "<tr><td><img src='$t' class='mini'/> <td><a href='detalhes.php?cod=$reg->cod'>$reg->nome</a><td>Adm"; //vai criar a linhas da tabela dinamicamente
+							echo "<tr><td><img src='$t' class='mini'/> <td><a href='detalhes.php?cod=$reg->cod'>$reg->nome</a><td>Adm"; //vai criar a linhas da tabela dinamicamente, passando o codigo pela URL
 						}
 
 					}
