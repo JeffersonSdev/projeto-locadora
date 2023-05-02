@@ -14,7 +14,7 @@
 		<h1>Escolha seu Jogo</h1>
 		<table class="listagem">
 			<?php 
-				$busca = $banco->query("select capa,nome from jogos order by nome "); // query sql
+				$busca = $banco->query("select * from jogos order by nome "); // query sql
 
 				if(!$busca){ // caso tenha dado erro na busca
 					echo "<tr><td>erro, tente novamente!";
@@ -24,7 +24,7 @@
 					}else{ 
 						while($reg = $busca->fetch_object()){ //enquanto tiver registros em $busca rodara
 							$t = thumb($reg->capa);
-							echo "<tr><td><img src='$t' class='mini'/> <td>$reg->nome<td>Adm"; //vai criar a linhas da tabela dinamicamente
+							echo "<tr><td><img src='$t' class='mini'/> <td><a href='detalhes.php?cod=$reg->cod'>$reg->nome</a><td>Adm"; //vai criar a linhas da tabela dinamicamente
 						}
 
 					}
