@@ -14,8 +14,8 @@
 		<h1>Escolha seu Jogo</h1>
 		<table class="listagem">
 			<?php 
-				$busca = $banco->query("select * from jogos order by nome "); // query sql
-
+				$sql = "select j.cod, j.nome, g.genero, j.capa, p.produtora from jogos as j join generos as g on j.genero = g.cod join produtoras as p on j.produtora = p.cod order by nome"; // join para mostrar o nome e não o cod do nome das outras tables
+				$busca = $banco->query($sql); // query sql
 				if(!$busca){ // caso tenha dado erro na busca
 					echo "<tr><td>erro, tente novamente!";
 				}else{
@@ -24,7 +24,12 @@
 					}else{ 
 						while($reg = $busca->fetch_object()){ //enquanto tiver registros em $busca rodara
 							$t = thumb($reg->capa);
-							echo "<tr><td><img src='$t' class='mini'/> <td><a href='detalhes.php?cod=$reg->cod'>$reg->nome</a><td>Adm"; //vai criar a linhas da tabela dinamicamente, passando o codigo pela URL
+							echo "<tr><td><img src='$t' class='mini'/>";
+							echo "<td><a href='detalhes.php?cod=$reg->cod'>$reg->nome</a>";
+							echo " [$reg->genero]";
+							echo "<br>$reg->produtora";
+							echo "<td>Adm";
+							//vai criar a linhas da tabela dinamicamente, passando o codigo pela URL
 						}
 
 					}
@@ -43,7 +48,7 @@
 				<td>Foto</td><td>Nome</td><td>Adm</td>
 			</tr>
 			-->
-		</table>
+		</table>	
 	</div> 
 	<?php $banco->close() ?>
 </body>
