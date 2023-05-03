@@ -10,18 +10,20 @@
 		require_once "includes/banco.php";
 		require_once "includes/funcoes.php";
 
-		$ordem = $_GET['ord'] ?? "nome";
+		$ordem = $_GET['ord'] ?? "nome"; // colocando o valor passado no menu pela url em uma variavel
+		$chave = $_GET['busca'] ?? "";
 	?>
 	<div id="corpo">
 		<?php include_once "topo.php" ?>
 		<h1>Escolha seu Jogo</h1>
 		<form action="index.php" method="get" id="busca">
 
-			Ordenar por: 
+			Ordenar por: <!--Colocando o valor pela URL -->
 			<a href="index.php?ord=nome">Nome</a> | 
 			<a href="index.php?ord=prod">Produtora</a> |
 			<a href="index.php?ord=manota">Maior Nota</a> |
 			<a href="index.php?ord=menota">Menor Nota</a> |
+			<a href="index.php">Mostrar Todos</a> |
 
 			<label for="buscar">Buscar: </label>
 			<input type="text" name="busca" id="buscar" size="10" maxlength="40">
@@ -31,9 +33,14 @@
 			<?php 
 				$sql = "select j.cod, j.nome, g.genero, j.capa, p.produtora from jogos as j join generos as g on j.genero = g.cod join produtoras as p on j.produtora = p.cod "; // join para mostrar o nome e não o cod do nome das outras tables
 
-				switch($ordem){
+				if(!empty($chave)){ 
+				// se a variavel $chave não estiver vazia vai ser pego a variavel do sql e concatenado com o que foi passado em $chave
+					$sql .= "where j.nome like '%$chave%' or p.produtora like '%$chave%' or g.genero like '%$chave%' ";
+				}
+
+				switch($ordem){ //de acordo com o valor da URL entrara em um desses
 					case "prod":
-						$sql .= "order by p.produtora";
+						$sql .= "order by p.produtora"; //concatedando com o que já existe dentro de $sql
 						break;
 					case "manota":
 						$sql .= "order by j.nota DESC";
@@ -60,7 +67,7 @@
 							echo " [$reg->genero]"; // puxando o genero do join
 							echo "<br>$reg->produtora"; // puxando a produtora do join
 							echo "<td>Adm";
-							//vai criar a linhas da tabela dinamicamente, passando o codigo pela URL
+							//vai criar as linhas da tabela dinamicamente, passando o codigo pela URL
 						}
 
 					}
