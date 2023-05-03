@@ -12,6 +12,8 @@
 	?>
 	<div id="corpo">
 		<?php 
+			include_once "topo.php";
+			
 			$cod = $_GET['cod']??0; //puxando o cod passado na URL
 			$query = $banco->query("select * from jogos where cod = '$cod' ");
 		?>
@@ -41,6 +43,7 @@
 		</table>
 		<a href="index.php"><img src="icons/icoback.png" alt="Voltar"></a>
 	</div> 
+	<?php include_once "rodape.php" ?>
 </body>
 
 </html>
