@@ -11,7 +11,7 @@
 		require_once "includes/funcoes.php";
 
 		$ordem = $_GET['ord'] ?? "nome"; // colocando o valor passado no menu pela url em uma variavel
-		$chave = $_GET['busca'] ?? "";
+		$chave = $_GET['busca'] ?? ""; //puxando o parametro busca do form e colocando na variavel $chave
 	?>
 	<div id="corpo">
 		<?php include_once "topo.php" ?>
@@ -19,14 +19,14 @@
 		<form action="index.php" method="get" id="busca">
 
 			Ordenar por: <!--Colocando o valor pela URL -->
-			<a href="index.php?ord=nome">Nome</a> | 
-			<a href="index.php?ord=prod">Produtora</a> |
-			<a href="index.php?ord=manota">Maior Nota</a> |
-			<a href="index.php?ord=menota">Menor Nota</a> |
+			<a href="index.php?ord=nome&busca=<?php echo $chave ?>">Nome</a> | 
+			<a href="index.php?ord=prod&busca=<?php echo $chave ?>">Produtora</a> |
+			<a href="index.php?ord=manota&busca=<?php echo $chave ?>">Maior Nota</a> |
+			<a href="index.php?ord=menota&busca=<?php echo $chave ?>">Menor Nota</a> |
 			<a href="index.php">Mostrar Todos</a> |
 
 			<label for="buscar">Buscar: </label>
-			<input type="text" name="busca" id="buscar" size="10" maxlength="40">
+			<input type="text" name="busca" id="buscar" size="10" maxlength="40"> <!-- parametro busca -->
 			<input type="submit" value="Enviar">
 	    </form>
 		<table class="listagem">
