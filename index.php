@@ -9,19 +9,43 @@
 	<?php 
 		require_once "includes/banco.php";
 		require_once "includes/funcoes.php";
+
+		$ordem = $_GET['ord'] ?? "nome";
 	?>
 	<div id="corpo">
 		<?php include_once "topo.php" ?>
 		<h1>Escolha seu Jogo</h1>
 		<form action="index.php" method="get" id="busca">
-			Ordenar por: Nome | Produtora | Maior Nota | Menor Nota |
+
+			Ordenar por: 
+			<a href="index.php?ord=nome">Nome</a> | 
+			<a href="index.php?ord=prod">Produtora</a> |
+			<a href="index.php?ord=manota">Maior Nota</a> |
+			<a href="index.php?ord=menota">Menor Nota</a> |
+
 			<label for="buscar">Buscar: </label>
 			<input type="text" name="busca" id="buscar" size="10" maxlength="40">
 			<input type="submit" value="Enviar">
 	    </form>
 		<table class="listagem">
 			<?php 
-				$sql = "select j.cod, j.nome, g.genero, j.capa, p.produtora from jogos as j join generos as g on j.genero = g.cod join produtoras as p on j.produtora = p.cod order by nome"; // join para mostrar o nome e não o cod do nome das outras tables
+				$sql = "select j.cod, j.nome, g.genero, j.capa, p.produtora from jogos as j join generos as g on j.genero = g.cod join produtoras as p on j.produtora = p.cod "; // join para mostrar o nome e não o cod do nome das outras tables
+
+				switch($ordem){
+					case "prod":
+						$sql .= "order by p.produtora";
+						break;
+					case "manota":
+						$sql .= "order by j.nota DESC";
+						break;
+					case "menota":
+						$sql .= "order by j.nota ASC";
+						break;
+					default:
+						$sql .= "order by j.nome";
+						break;
+				}
+
 				$busca = $banco->query($sql); // query sql
 				if(!$busca){ // caso tenha dado erro na busca
 					echo "<tr><td>erro, tente novamente!";
