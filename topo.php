@@ -5,7 +5,13 @@
         
     }else{
         echo "Olá, <strong>".$_SESSION['nome']."</strong> | ";
-        echo "Sair";
+        echo "Meus Dados | ";
+        if(is_admin()){
+            echo "Novo usuario | ";
+            echo "Novo jogo | ";
+
+        }
+        echo "<a href='user-logout.php'>Sair</a>";
     }
     echo "</header>";
 

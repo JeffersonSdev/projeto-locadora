@@ -68,7 +68,15 @@
 							echo "<td><a href='detalhes.php?cod=$reg->cod'>$reg->nome</a>";
 							echo " [$reg->genero]"; // puxando o genero do join
 							echo "<br>$reg->produtora"; // puxando a produtora do join
-							echo "<td>Adm";
+							if(is_admin()){
+								echo "<td>";
+								echo "<span class='material-symbols-outlined'>add_circle</span> ";
+								echo "<span class='material-symbols-outlined'>edit</span> ";
+								echo "<span class='material-symbols-outlined'>delete</span>";
+
+							}else if(is_editor()){
+								echo "<td><span class='material-symbols-outlined'>edit</span>";
+							}
 							//vai criar as linhas da tabela dinamicamente, passando o codigo pela URL
 						}
 

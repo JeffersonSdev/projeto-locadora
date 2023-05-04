@@ -10,7 +10,7 @@
 		}
 
 		function voltar(){
-			return "<a href='index.php' class='back'><span class='material-symbols-outlined'>arrow_back</span></a>";
+			return "<br><a href='index.php'><span class='material-symbols-outlined'>arrow_back</span></a>";
 		}
 
 		function msg_sucesso($m){

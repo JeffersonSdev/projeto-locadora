@@ -1,8 +1,8 @@
 <?php 
 session_start();
-if(!isset($_SERVER['user'])){ // se o user não for configurado
-    $_SESSION['user'] = "Jefferson";
-    $_SESSION['nome'] = "Jefferson Araujo";
+if(!isset($_SESSION['user'])){ // se o user não for configurado
+    $_SESSION['user'] = "";
+    $_SESSION['nome'] = "";
     $_SESSION['tipo'] = "";
 }
 
@@ -27,6 +27,44 @@ if(!isset($_SERVER['user'])){ // se o user não for configurado
         return $ok;
     }
 
+    function logout(){ //deletando variaveis
+        unset($_SESSION['user']);
+        unset($_SESSION['nome']);
+        unset($_SESSION['tipo']);
+    }
 
+    function is_logado(){
+        if(empty($_SESSION['user'])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function is_admin(){
+        $t = $_SESSION['tipo'] ??0;
+        if(is_null($t)){
+            return false;
+        }else{
+            if($t == 'admin'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
+    function is_editor(){
+        $t = $_SESSION['tipo']??0;
+        if(is_null($t)){
+            return false;
+        }else{
+            if($t == 'editor'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 
 ?>
