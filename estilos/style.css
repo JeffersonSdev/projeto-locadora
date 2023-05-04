@@ -93,3 +93,7 @@ div.erro{
 	text-align: center;
 	color: rgb(131, 55, 55);
 }
+
+a.back{
+	margin-top: 10px;
+}

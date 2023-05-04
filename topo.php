@@ -1,10 +1,11 @@
 <?php 
     echo "<header>";
-    if (empty($_SERVER['user'])) { //se o user estiver vazio
+    if (empty($_SESSION['user'])) { //se o user estiver vazio
         echo "<a href='user-login.php'>Entrar</a>";
         
     }else{
-        echo "Olá, ".$_SERVER['nome'];
+        echo "Olá, <strong>".$_SESSION['nome']."</strong> | ";
+        echo "Sair";
     }
     echo "</header>";
 
