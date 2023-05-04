@@ -68,3 +68,28 @@ footer{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 0.9em;
 }
+
+div.sucesso{
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 50px;
+	background-color: rgba(153, 240, 153, 0.726);
+	text-align: center;
+	color: rgb(55, 131, 55);
+}
+div.aviso{
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 50px;
+	background-color: rgba(234, 240, 153, 0.726);
+	text-align: center;
+	color: rgb(131, 130, 55);
+}
+div.erro{
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 50px;
+	background-color: rgba(240, 153, 153, 0.726);
+	text-align: center;
+	color: rgb(131, 55, 55);
+}

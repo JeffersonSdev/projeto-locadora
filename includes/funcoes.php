@@ -8,4 +8,21 @@
 				return $caminho;
 			}
 		}
+
+		function voltar(){
+			return "<a href='index.php'><span class='material-symbols-outlined'>arrow_back</span></a>";
+		}
+
+		function msg_sucesso($m){
+			$resp = "<div class='sucesso'>$m <span class='material-symbols-outlined'>check_circle</span></div>";
+			return $resp;
+		}
+		function msg_aviso($m){
+			$resp = "<div class='aviso'>$m <span class='material-symbols-outlined'>info</span></div>";
+			return $resp;
+		}
+		function msg_erro($m){
+			$resp = "<div class='erro'>$m <span class='material-symbols-outlined'>error</span></div>";
+			return $resp;
+		}
 ?>

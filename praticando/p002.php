@@ -24,15 +24,10 @@
 
     <table>
         <?php 
-            //fazer query com o select
-            $query = $banco->query("select * from jogos");
-
-            //imprimir na tela os registros
-            while($reg = $query->fetch_object()){
-                //criar linhas dinamicamente
-                echo "<tr><td><img src='img/$reg->capa'/><td>$reg->nome"; //o $reg vai percorrer a query e puxar as colunas que se pede "capa" e "nome"
+            $busca = $banco->query("select * from jogos as j join generos as g on j.genero = g.cod join produtoras as p on j.produtora = p.cod");
+            while($reg= $busca->fetch_object()){
+                echo "<tr><td>$reg->capa<td>$reg->nome [$reg->genero]<br>$reg->produtora";
             }
-
         ?>
     </table>
 </body>

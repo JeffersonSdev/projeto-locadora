@@ -4,11 +4,13 @@
 	<meta charset="UTF-8"/>
 	<title>Listagem de Jogos</title>
 	<link rel="stylesheet" href="estilos/style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
  </head>
 <body> 
 	<?php 
 		require_once "includes/banco.php";
 		require_once "includes/funcoes.php";
+		require_once "includes/login.php";
 
 		$ordem = $_GET['ord'] ?? "nome"; // colocando o valor passado no menu pela url em uma variavel
 		$chave = $_GET['busca'] ?? ""; //puxando o parametro busca do form e colocando na variavel $chave
