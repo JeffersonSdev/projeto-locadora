@@ -34,7 +34,7 @@ if(!isset($_SESSION['user'])){ // se o user não for configurado
     }
 
     function is_logado(){
-        if(empty($_SESSION['user'])){
+        if(!empty($_SESSION['user'])){ //se nao estiver vazio
             return true;
         }else{
             return false;

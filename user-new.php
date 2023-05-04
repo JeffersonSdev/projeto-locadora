@@ -27,7 +27,17 @@
                     $tipo = $_POST['tipo'] ?? null;
                     
                     if($senha1 === $senha2){
-                        echo msg_sucesso("Novo Usuario Cadastrado com Sucesso");
+                        if(empty($usuario) ||empty($nome) ||empty($senha1) ||empty($senha2) || empty($tipo)){
+                            echo "Erro todos os dados sao obrigatorios";
+                        }else{
+                            $senha = gerarHash($senha1);
+                            $sql = "INSERT into usuarios (usuario, nome, senha, tipo) values ('$usuario','$nome','$senha','$tipo')";
+                            if($banco->query($sql)){
+                                echo msg_sucesso("Usuario $usuario cadastrado com sucesso!");
+                            }else{
+                                echo msg_erro("Não foi possivel cadastrar o usuario, tente novamente.");
+                            }
+                        }
                     }else{
                         echo msg_aviso("Senhas diferentes, tente novamente");
                     }
